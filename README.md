@@ -37,8 +37,8 @@ Generates a waveform file 16mux_tb.vcd for use in GTKWave.
 
 Example Output:
 
+![Screenshot From 2025-04-21 17-01-53](https://github.com/user-attachments/assets/9bd218d9-fa10-4d88-b37b-34351eb8dfda)
 
-/home/marcin/Pictures/Screenshots/Screenshot From 2025-04-21 17-01-53.png
 
 ## ▶️ Simulation Instructions
 Using Icarus Verilog (iverilog + GTKWave)
@@ -59,7 +59,8 @@ View waveform (optional):
 gtkwave 16mux_tb.vcd
 ```
 
-![Uploading Screenshot From 2025-04-21 17-03-43.png…]()
+
+![Screenshot From 2025-04-21 17-03-43](https://github.com/user-attachments/assets/a9538531-a740-42ab-ace7-77eacc0e0a79)
 
 
 ## 🧠 Concepts Demonstrated
