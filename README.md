@@ -1,76 +1,72 @@
-# 16-to-1 Multiplexer in Verilog
-
-This project implements and tests a 16-to-1 multiplexer (`mux16`) in Verilog. A 16:1 multiplexer selects one of 16 input bits based on a 4-bit select signal and outputs the selected bit.
+## 16-to-1 Multiplexer in Verilog
+This project implements a hierarchical 16-to-1 multiplexer (mux16) using smaller multiplexer building blocks in Verilog: mux2 and mux4. 
+The mux16 module selects one of 16 input bits based on a 4-bit select signal and outputs the selected bit.
 
 ## 📁 Files
+mux16.v: Verilog source code with modules mux2, mux4, and mux16.
 
-- `mux16.v`: Verilog module for the 16-to-1 multiplexer.
-- `mux16_tb.v`: Testbench to simulate and verify the functionality of the multiplexer.
-- `16mux_tb.vcd`: Output waveform file for visual inspection with a waveform viewer (e.g., GTKWave).
+mux16_tb.v: Testbench to simulate and verify the functionality of the 16-to-1 multiplexer.
 
-## 🔧 Module Description
+16mux_tb.vcd: Output waveform file for visual inspection (e.g., in GTKWave).
 
-### `mux16.v`
+## 🔧 Module Structure
+🔸 mux2
+A basic 2-to-1 multiplexer implemented using logic gates.
 
-```verilog
-module mux16 (in, sel, out);
-    input [15:0] in;    // 16 input lines
-    input [3:0] sel;    // 4-bit select signal
-    output out;         // Output of selected input
+🔸 mux4
+A 4-to-1 multiplexer built hierarchically using three mux2 instances.
 
-    assign out = in[sel];  // Output assigned based on selected input
-endmodule
-```
-
-![Screenshot From 2025-04-21 17-00-16](https://github.com/user-attachments/assets/49638a4e-5bcb-4f19-856e-e8892f59d154)
+🔸 mux16
+The main 16-to-1 multiplexer, implemented using four mux4 modules and one final mux4 to select from their outputs.
 
 
-## 🧪 Testbench Overview
-mux16_tb.v
+##🧪 Testbench Overview – mux16_tb.v
 The testbench:
 
-Initializes inputs and applies various test vectors to mux16.
+Instantiates the mux16 module
 
-Monitors the output using $monitor.
+Drives test inputs to verify output for different select values
 
-Generates a waveform file 16mux_tb.vcd for use in GTKWave.
+Uses $monitor to display the changes in real time
 
-Example Output:
+Generates a waveform dump file (16mux_tb.vcd)
 
-![Screenshot From 2025-04-21 17-01-53](https://github.com/user-attachments/assets/9bd218d9-fa10-4d88-b37b-34351eb8dfda)
+Example Output Screenshot:
+![Screenshot From 2025-04-21 17-01-53](https://github.com/user-attachments/assets/83c7daee-d558-416b-87ec-bd6595548e1a)
 
 
 ## ▶️ Simulation Instructions
-Using Icarus Verilog (iverilog + GTKWave)
-Compile the design and testbench:
+Using Icarus Verilog + GTKWave
+1. Compile:
 
 ```bash
 iverilog -o mux16_tb.vvp mux16.v mux16_tb.v
-Run the simulation:
+2. Run Simulation:
 ```
 
 ```bash
 vvp mux16_tb.vvp
 ```
 
-View waveform (optional):
+3. View Waveform:
 
 ```bash
 gtkwave 16mux_tb.vcd
 ```
 
-
-![Screenshot From 2025-04-21 17-03-43](https://github.com/user-attachments/assets/a9538531-a740-42ab-ace7-77eacc0e0a79)
+![Screenshot From 2025-04-21 17-03-43](https://github.com/user-attachments/assets/41946240-67d6-4efc-b115-442bfe7565bb)
 
 
 ## 🧠 Concepts Demonstrated
-Behavioral modeling in Verilog
+Hierarchical digital design using Verilog
 
-Multiplexer logic using vector indexing
+Logic gate-level modeling (mux2)
 
-Writing and simulating a basic testbench
+Reusability through parameterized structures
 
-VCD file generation for waveform analysis
+Simulation and verification using testbenches
+
+VCD file generation and waveform analysis with GTKWave
 
 ---
 
